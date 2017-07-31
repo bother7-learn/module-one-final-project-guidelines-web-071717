@@ -23,9 +23,9 @@ ActiveRecord::Schema.define(version: 6) do
   end
 
   create_table "parks", force: :cascade do |t|
-    t.string "name"
-    t.string "location"
-    t.string "zipcode"
+    t.string  "name"
+    t.string  "location"
+    t.integer "zipcode"
   end
 
   create_table "users", force: :cascade do |t|
@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 6) do
   end
 
   create_table "zip_codes", force: :cascade do |t|
-    t.string "zipcode"
-    t.string "borough"
+    t.integer "zipcode"
+    t.string  "borough"
   end
 
 end

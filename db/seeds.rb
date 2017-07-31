@@ -29,10 +29,11 @@ CSV.parse(csv, headers: true) do |row|
   ZipCodes.new({zipcode: row[0], borough: row[1]}).save
 end
 
-<<<<<<< HEAD
+
 kesean = Users.create(name: 'Kesean', password: '0609', zipcode: 10022)
-Pry.start
-=======
+joe = Users.create(name: 'Joe', password: '0000', zipcode: 10024)
+
+
 HikingTrails.all.each do |trail|
   if trail.difficulty == "Easy"
     trail.difficulty_level = 2
@@ -50,5 +51,4 @@ HikingTrails.all.each do |trail|
   trail.save
 end
 
-# Pry.start
->>>>>>> 83e0bd5f4b1786c1dd89e243b5b96d45c5e0fbd8
+ Pry.start

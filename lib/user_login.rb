@@ -19,9 +19,9 @@ end
 def verify_user(user_account_choice)
   case user_account_choice
   when 1
-    puts "Please enter user id:"
-    id = gets.chomp
-    user_verification(id)
+    puts "Please enter username:"
+    user_name = gets.chomp
+    user_verification(user_name)
   when 2
     #New Account Creation Todo
   else
@@ -30,10 +30,10 @@ def verify_user(user_account_choice)
   end
 end
 
-def user_verification(id)
-  if Users.find_by(name: id)
-    binding.pry
-    found_user = Users.find_by(name: id)
+def user_verification(user_name)
+  if Users.find_by(name: user_name)
+    # binding.pry
+    found_user = Users.find_by(name: user_name)
     password_verification(found_user)
   else
     puts "Invalid User."
@@ -43,9 +43,11 @@ end
 
 def password_verification(found_user)
   attempt_counter = 0
-  puts "Welcome back #{id}!"
-  puts "Please enter password"
+  puts "Welcome back #{found_user.name}!"
+  puts "Please enter password:"
+  password = gets.chomp
   while attempt_counter < 5
     ###Todo
   end
+  main_menu(found_user)
 end
