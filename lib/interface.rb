@@ -1,5 +1,5 @@
 require 'pry'
-require_relative '../app/models/user.rb'
+require_relative '../app/models/users.rb'
 
 
 # Main menu of the interface that holds all the functions being executed from run.rb.
@@ -45,5 +45,5 @@ end
 
 
 def validate_search(search_option, search_input)
-  
+
 end

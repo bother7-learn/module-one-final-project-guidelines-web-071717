@@ -6,7 +6,7 @@ class CreateParks < ActiveRecord::Migration[5.0]
     create_table :parks do |t|
       t.string :name
       t.string :location
-      t.integer :zipcode
+      t.string :zipcode
     end
   end
 
