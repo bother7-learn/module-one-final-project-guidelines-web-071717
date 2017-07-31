@@ -1,4 +1,4 @@
-class CreateParks < ActiveRecord::Migration
+class CreateParks < ActiveRecord::Migration[5.0]
 
   # "Prop_ID", "Name", "Location", "Zip"
 

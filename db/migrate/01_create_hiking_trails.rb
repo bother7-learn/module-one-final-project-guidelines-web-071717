@@ -1,4 +1,4 @@
-class CreateHikingTrails < ActiveRecord::Migration
+class CreateHikingTrails < ActiveRecord::Migration[5.0]
 
   # "Prop_ID", "Name", "Location", "Park_Name", "Length", "Difficulty",
   # "Other_Details", "Accessible", "Limited_Access", "lat", "lon"

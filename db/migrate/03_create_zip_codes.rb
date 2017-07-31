@@ -1,4 +1,4 @@
-class CreateZipCodes < ActiveRecord::Migration
+class CreateZipCodes < ActiveRecord::Migration[5.0]
 
 
   def change
