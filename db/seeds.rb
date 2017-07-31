@@ -13,22 +13,19 @@ Parks.delete_all
 file = File.read("./db/source/NYC_Hiking.json")
 hiking_array = JSON.parse(file)
   hiking_array.each do |hash|
-    HikingTrails.new({name: hash["Name"], location: hash["Location"], park_name: hash["Park_Name"], length: hash["Length"], difficulty: hash["Difficulty"], other_details: hash["Other_Details"]})
-    HikingTrails.save
+    HikingTrails.new({name: hash["Name"], location: hash["Location"], park_name: hash["Park_Name"], length: hash["Length"], difficulty: hash["Difficulty"], other_details: hash["Other_Details"]}).save
   end
 
 file = File.read("./db/source/NYC_Parks.json")
 parks_array = JSON.parse(file)
   parks_array.each do |hash|
-    Parks.new({name: hash["Name"], location: hash["Location"], zipcode: hash["Zip"]})
-    Parks.save
+    Parks.new({name: hash["Name"], location: hash["Location"], zipcode: hash["Zip"]}).save
   end
 
 csv = File.read("./db/source/nyc_zipcodes.csv")
 
 CSV.parse(csv, headers: true) do |row|
-  ZipCodes.new(row.fields)
-  ZipCodes.save
+  ZipCodes.new({zipcode: row[0], borough: row[1]}).save
 end
 
 Pry.start
