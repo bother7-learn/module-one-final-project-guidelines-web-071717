@@ -20,10 +20,10 @@ end
 def verify_user_choice(user_account_choice)
   case user_account_choice.to_i
   when 1
-    puts "Please enter username:"
+    puts "Please enter username:" #Changed to password based later
     @current_user = gets.chomp
   when 2
-    puts "Please enter chosen name:"
+    puts "Please enter chosen name:" #Create new user in database
     @current_user = gets.chomp
   else
     puts "Invalid Choice."
@@ -40,8 +40,10 @@ def main_menu
   search_option = gets.chomp.to_i
   puts "Please enter search location:"
   search_input = gets.chomp
-  validate_search(search_option, search_input)
+  valid_search?(search_option, search_input)
 end
 
 
-def validate_search()
+def validate_search(search_option, search_input)
+  
+end
