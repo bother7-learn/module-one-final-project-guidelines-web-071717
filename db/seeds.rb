@@ -7,6 +7,7 @@ require 'CSV'
 HikingTrails.delete_all
 ZipCodes.delete_all
 Parks.delete_all
+Users.delete_all
 
 # "Prop_ID", "Name", "Location", "Park_Name", "Length", "Difficulty",
 # "Other_Details", "Accessible", "Limited_Access", "lat", "lon"
@@ -28,5 +29,5 @@ CSV.parse(csv, headers: true) do |row|
   ZipCodes.new({zipcode: row[0], borough: row[1]}).save
 end
 
-
+kesean = Users.create(name: 'Kesean', password: '0609', zipcode: 10022)
 Pry.start
