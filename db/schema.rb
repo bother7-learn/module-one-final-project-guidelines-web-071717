@@ -13,12 +13,13 @@
 ActiveRecord::Schema.define(version: 5) do
 
   create_table "hiking_trails", force: :cascade do |t|
-    t.string "name"
-    t.string "location"
-    t.string "park_name"
-    t.string "length"
-    t.string "difficulty"
-    t.string "other_details"
+    t.string  "name"
+    t.string  "location"
+    t.string  "park_name"
+    t.string  "length"
+    t.string  "difficulty"
+    t.string  "other_details"
+    t.integer "difficulty_level"
   end
 
   create_table "parks", force: :cascade do |t|
