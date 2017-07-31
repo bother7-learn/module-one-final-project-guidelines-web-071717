@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3) do
+ActiveRecord::Schema.define(version: 4) do
 
   create_table "hiking_trails", force: :cascade do |t|
-    t.string "name"
-    t.string "location"
-    t.string "park_name"
-    t.string "length"
-    t.string "difficulty"
-    t.string "other_details"
+    t.string  "name"
+    t.string  "location"
+    t.string  "park_name"
+    t.string  "length"
+    t.string  "difficulty"
+    t.string  "other_details"
+    t.integer "difficulty_level"
   end
 
   create_table "parks", force: :cascade do |t|
