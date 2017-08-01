@@ -31,7 +31,7 @@ def park_list(user, zipcode)
   park_number = gets.chomp
   chosen_park = @nearby_parks[park_number.to_i - 1]
   puts "Here are directions to the park from your general location"
-  puts chosen_park.directions(user.geolocation, chosen_trail.geolocation)
+  puts chosen_park.directions(user.geolocation, chosen_park.geolocation)
 end
 
 def trail_list(user, zipcode)
@@ -76,5 +76,6 @@ def borough_toggled_trails
   trail_number = gets.chomp
   chosen_trail = @borough_trails[trail_number.to_i - 1]
   puts "Here are directions to #{chosen_trail} from your general location."
+  binding.pry
   puts chosen_park.directions(user.geolocation, chosen_trail.geolocation)
 end
