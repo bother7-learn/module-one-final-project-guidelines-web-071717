@@ -44,8 +44,8 @@ def trail_list(user, zipcode)
   @nearby_trails.each_with_index { |park, index| puts "#{index + 1}. #{park.name}" }
   puts
   puts "Please pick a trail number:"
-  park_number = gets.chomp
-  chosen_park = @nearby_parks[park_number.to_i - 1]
-  puts "Here are directions to the trail from your general location"
+  trail_number = gets.chomp
+  chosen_trail = @nearby_trails[trail_number.to_i - 1]
+  puts "Here are directions to #{chosen_trail} from your general location."
   puts "Directions!"
 end

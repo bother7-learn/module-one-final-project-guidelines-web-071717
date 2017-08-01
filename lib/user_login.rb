@@ -31,21 +31,31 @@ def verify_user(user_account_choice)
 end
 #=====New User Creation====#
 def new_user_creation
+
   puts "Please enter a username:"
   new_username = gets.chomp
   if username_taken?(new_username) == false
     puts "Please enter a password:"
     usr_password = STDIN.noecho(&:gets).chomp
-    puts "Please enter your primary zipcode:"
-    usr_zipcode = gets.chomp
+    until true
+      puts "Please enter your primary zipcode:"
+      usr_zipcode = gets.chomp
+      true if Zipcode.all.include?(usr_zipcode)
+      puts "Invalid ZipCode" if usr_zipcode == "nil"
+      false
+    end
   end
-    new_user = User.create(name: new_username, password: usr_password, zipcode: usr_zipcode)
-    puts "Thank you for creating your account! Soon we will also require your SSN in secure plain text."
-    main_menu(new_user)
+
+  new_user = User.create(name: new_username, password: usr_password, zipcode: usr_zipcode)
+  puts "Thank you for creating your account! Soon we will also require your SSN in secure plain text."
+  main_menu(new_user)
 end
 
 def username_taken?(new_username)
-  if User.find_by(name: new_username)
+  if new_username == "nil"
+    puts "Invalid Username, please enter a valid username"
+    new_user_creation
+  elsif User.find_by(name: new_username)
     puts "Username taken. Please try a different name."
     new_user_creation
   else
