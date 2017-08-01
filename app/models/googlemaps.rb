@@ -22,7 +22,8 @@ DIRECTIONS_KEY = "AIzaSyBDA-1PhyWdIaRCg0lAghiECA04omO42zE"
     hash[:distance] = array[0]["distance"]["text"]
     hash[:duration] = array[0]["duration"]["text"]
     array[0]["steps"].each do |step|
-      hash[:directions] << step["html_instructions"]
+      string = step["html_instructions"]
+      hash[:directions] << string.delete("/").gsub(/<b>/, "")
     end
     hash
   end

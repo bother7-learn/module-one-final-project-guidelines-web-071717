@@ -57,9 +57,9 @@ def trail_list(user, zipcode)
 end
 
 def borough_toggled_trails
-  # binding.pry
+  binding.pry
   puts "Here are all the trails within #{@borough}:"
-  @borough_trails.each { |trail| puts trail.name}
+  @borough_trails.flatten.each { |trail| puts trail.name}
   puts "Please pick a trail number:"
   trail_number = gets.chomp
   chosen_trail = @borough_trails[trail_number.to_i - 1]
