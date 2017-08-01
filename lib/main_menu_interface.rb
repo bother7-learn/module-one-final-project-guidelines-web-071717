@@ -6,7 +6,7 @@ def main_menu(user)
   puts "Welcome to the Search Menu."
   puts "Would you like to use your default zipcode? (Y or N)"
   answer = gets.chomp
-  if answer == "Y"
+  if answer == "Y" || answer == "y"
     validate_search(user, user.zipcode)
   else
     get_search_zipcode(user)
@@ -41,7 +41,7 @@ end
 def local_information(zip)
   borough = ZipCode.get_borough(zip)
   nearby_zips = ZipCode.nearby_zipcodes(zip)
-  
+
   @nearby_parks = Park.nearby_parks(zip.to_s.split) #Integer to Array Magic.
   @nearby_trails = HikingTrail.nearby_trails(zip.to_s.split) #Integer to Array Magic.
   @borough_parks = Park.nearby_parks(nearby_zips)

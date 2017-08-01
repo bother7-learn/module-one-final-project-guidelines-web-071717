@@ -35,21 +35,17 @@ def new_user_creation
   puts "Please enter a username:"
   new_username = gets.chomp
   if username_taken?(new_username) == false
-    puts "Please enter a password:"
-    usr_password = STDIN.noecho(&:gets).chomp
-    until true
-      puts "Please enter your primary zipcode:"
-      usr_zipcode = gets.chomp
-      true if Zipcode.all.include?(usr_zipcode)
-      puts "Invalid ZipCode" if usr_zipcode == "nil"
-      false
-    end
+    puts
+    validated_password = password_validation
+    puts
+    validated_zipcode = zipcode_validation
   end
 
-  new_user = User.create(name: new_username, password: usr_password, zipcode: usr_zipcode)
+  new_user = User.create(name: new_username, password: validated_password, zipcode: validated_zipcode)
   puts "Thank you for creating your account! Soon we will also require your SSN in secure plain text."
   main_menu(new_user)
 end
+
 
 def username_taken?(new_username)
   if new_username == "nil"
@@ -61,6 +57,32 @@ def username_taken?(new_username)
   else
     false
   end
+end
+
+
+def password_validation
+  puts "Enter a password of your choice."
+  puts "Passwords must be at least 4 characters/numbers & up to 10."
+  puts "Warning: Passwords can not be reset currently."
+  password_attempt = STDIN.noecho(&:gets).chomp
+  if password_attempt == "nil" || (4..10).to_a.include?(password_attempt.length) == false
+    puts "Invalid Password..please try again"
+    puts
+    password_validation
+  end
+  return password_attempt
+end
+
+def zipcode_validation
+  puts "Please enter your primary zipcode:"
+  usr_zipcode = gets.chomp
+  nyc_zipcodes = ZipCode.all.map { |zipcode_obj| zipcode_obj.zipcode  }
+  if nyc_zipcodes.include?(usr_zipcode) == false || usr_zipcode == "nil"
+    puts "Invalid ZipCode, please enter a valid NYC zipcode."
+    puts
+    zipcode_validation
+  end
+  return usr_zipcode
 end
 
 
