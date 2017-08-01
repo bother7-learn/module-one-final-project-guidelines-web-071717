@@ -47,5 +47,5 @@ def trail_list(user, zipcode)
   trail_number = gets.chomp
   chosen_trail = @nearby_trails[trail_number.to_i - 1]
   puts "Here are directions to #{chosen_trail} from your general location."
-  puts "Directions!"
+  puts chosen_trail.directions(user.geolocation,chosen_trail.geolocation)
 end
