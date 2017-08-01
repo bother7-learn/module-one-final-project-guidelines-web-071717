@@ -15,11 +15,9 @@ DIRECTIONS_KEY = "AIzaSyBDA-1PhyWdIaRCg0lAghiECA04omO42zE"
   end
 
   def directions(origin, destination)
-<<<<<<< HEAD
-    # hash = {distance:, duration:, directions: []}
-=======
+
+
     hash = {distance: "", duration: "", directions: []}
->>>>>>> Joe
     x = RestClient.get "https://maps.googleapis.com/maps/api/directions/json?origin=#{origin["lat"]},#{origin["lng"]}&destination=#{destination["lat"]},#{destination["lng"]}&key=#{DIRECTIONS_KEY}"
     y = JSON.parse(x)
     array = y["routes"][0]["legs"]

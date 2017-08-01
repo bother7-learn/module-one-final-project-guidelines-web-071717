@@ -14,7 +14,7 @@ include GoogleMaps
         trails_array << park.hiking_trails
       end
     end
-    trails_array.reject(&:blank?)
+    trails_array.reject(&:blank?).uniq
   end
 
   def geolocation

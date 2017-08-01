@@ -42,16 +42,16 @@ def local_information(zip)
   @borough = ZipCode.get_borough(zip)
   nearby_zips = ZipCode.nearby_zipcodes(zip)
 
-  @nearby_parks = Park.nearby_parks(zip.to_s.split) #Integer to Array Magic.
-  @nearby_trails = HikingTrail.nearby_trails(zip.to_s.split) #Integer to Array Magic.
-  @borough_parks = Park.nearby_parks(nearby_zips)
-  @borough_trails = HikingTrail.nearby_trails(nearby_zips)
+  @nearby_parks = Park.nearby_parks(zip.to_s.split).flatten#Integer to Array Magic.
+  @nearby_trails = HikingTrail.nearby_trails(zip.to_s.split).flatten#Integer to Array Magic.
+  @borough_parks = Park.nearby_parks(nearby_zips).flatten
+  @borough_trails = HikingTrail.nearby_trails(nearby_zips).flatten
 
   puts
   puts "Greetings from #{@borough}!"
-  puts "There are currently: #{@nearby_parks.length} Parks in your immediate area."
-  puts "There are currently: #{@nearby_trails.length} Trails in your immediate area."
-  puts "There are currently: #{@borough_parks.length} Parks in #{@borough}."
-  puts "There are currently: #{@borough_trails.length} Trails in #{@borough}."
+  puts "There is currently: #{@nearby_parks.length} Park(s) in your immediate area."
+  puts "There is currently: #{@nearby_trails.length} Trail(s) in your immediate area."
+  puts "There is currently: #{@borough_parks.length} Park(s) in #{@borough}."
+  puts "There is currently: #{@borough_trails.length} Trail(s) in #{@borough}."
   puts
 end
