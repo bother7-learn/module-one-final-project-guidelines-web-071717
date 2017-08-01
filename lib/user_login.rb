@@ -23,12 +23,18 @@ def verify_user(user_account_choice)
     user_name = gets.chomp
     user_verification(user_name)
   when 2
-    #New Account Creation Todo
+    puts "Welcome!"
+    puts "Please enter a username"
+    new_username = gets.chomp
+    username_taken?(new_username)
   else
     puts "Invalid Choice."
     login
   end
 end
+
+
+
 
 def user_verification(user_name)
   if Users.find_by(name: user_name)
@@ -46,8 +52,15 @@ def password_verification(found_user)
   puts "Welcome back #{found_user.name}!"
   puts "Please enter password:"
   password = gets.chomp
-  while attempt_counter < 5
-    ###Todo
-  end
-  main_menu(found_user)
-end
+  while attempt_counter < 4
+    if found_user.password == password
+      main_menu(found_user)
+    else
+      attempt_counter+=1
+      puts "Invalid password. #{5 - attempt_counter} attempt(s) remaining."
+      password = gets.chomp
+    end #If/Else End
+  end #While End
+  welcome_message
+  login #Returns user to main login screen after too many attempts
+end #Def End
