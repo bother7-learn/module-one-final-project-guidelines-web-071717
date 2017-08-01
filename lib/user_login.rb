@@ -40,12 +40,13 @@ def new_user_creation
     puts "Please enter your primary zipcode:"
     usr_zipcode = gets.chomp
   end
-    new_user = Users.create(name: new_username, password: usr_password, zipcode: usr_zipcode)
+    new_user = User.create(name: new_username, password: usr_password, zipcode: usr_zipcode)
+    puts "Thank you for creating your account! Soon we will also require your SSN in secure plain text."
     main_menu(new_user)
 end
 
 def username_taken?(new_username)
-  if Users.find_by(name: new_username)
+  if User.find_by(name: new_username)
     puts "Username taken. Please try a different name."
     new_user_creation
   else
@@ -57,9 +58,9 @@ end
 
 #=====Current User Login=====#
 def user_verification(user_name)
-  if Users.find_by(name: user_name)
+  if User.find_by(name: user_name)
     # binding.pry
-    found_user = Users.find_by(name: user_name)
+    found_user = User.find_by(name: user_name)
     password_verification(found_user)
   else
     puts "Invalid User."
