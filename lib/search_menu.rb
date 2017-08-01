@@ -31,7 +31,7 @@ def park_list(user, zipcode)
   park_number = gets.chomp
   chosen_park = @nearby_parks[park_number.to_i - 1]
   puts "Here are directions to the park from your general location"
-  puts chosen_park.directions(user.geolocation,chosen_park.geolocation)
+  puts chosen_park.directions(user.geolocation, chosen_trail.geolocation)
 end
 
 def trail_list(user, zipcode)
@@ -53,7 +53,11 @@ def trail_list(user, zipcode)
   trail_number = gets.chomp
   chosen_trail = @nearby_trails[trail_number.to_i - 1]
   puts "Here are directions to #{chosen_trail} from your general location."
+<<<<<<< HEAD
   puts chosen_trail.directions(user.geolocation,chosen_trail.geolocation)
+=======
+  puts chosen_trail.directions(user.geolocation, chosen_trail.geolocation)
+>>>>>>> kesean
 end
 
 def borough_toggled_trails
@@ -64,5 +68,17 @@ def borough_toggled_trails
   trail_number = gets.chomp
   chosen_trail = @borough_trails[trail_number.to_i - 1]
   puts "Here are directions to #{chosen_trail} from your general location."
-  puts "Directions!"
+  puts chosen_park.directions(user.geolocation, chosen_trail.geolocation)
+end
+
+
+def borough_toggled_trails
+  puts "Here is the trail(s) within #{@borough}:"
+  @borough_trails.flatten.each_with_index { |trail, index| puts "#{index+1}. #{trail.name} difficulty: #{trail.difficulty}"}
+  binding.pry
+  puts "Please pick a trail number:"
+  trail_number = gets.chomp
+  chosen_trail = @borough_trails[trail_number.to_i - 1]
+  puts "Here are directions to #{chosen_trail} from your general location."
+  puts chosen_park.directions(user.geolocation, chosen_trail.geolocation)
 end
