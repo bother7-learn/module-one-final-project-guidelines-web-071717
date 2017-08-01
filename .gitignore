@@ -11,4 +11,8 @@ tmp
 *.swp
 
 db/*.db
+<<<<<<< HEAD
 db/schema.rb
+=======
+db/schema.db
+>>>>>>> master
