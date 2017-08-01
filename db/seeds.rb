@@ -4,37 +4,44 @@ require 'pry'
 require_relative '../config/environment'
 require 'CSV'
 
-HikingTrails.delete_all
-ZipCodes.delete_all
-Parks.delete_all
-Users.delete_all
+HikingTrail.delete_all
+ZipCode.delete_all
+Park.delete_all
+User.delete_all
 
 # "Prop_ID", "Name", "Location", "Park_Name", "Length", "Difficulty",
 # "Other_Details", "Accessible", "Limited_Access", "lat", "lon"
 file = File.read("./db/source/NYC_Hiking.json")
 hiking_array = JSON.parse(file)
   hiking_array.each do |hash|
-    HikingTrails.new({name: hash["Name"], location: hash["Location"], park_name: hash["Park_Name"], length: hash["Length"], difficulty: hash["Difficulty"], other_details: hash["Other_Details"]}).save
+    HikingTrail.new({name: hash["Name"], location: hash["Location"], park_name: hash["Park_Name"], length: hash["Length"], difficulty: hash["Difficulty"], other_details: hash["Other_Details"]}).save
   end
 
 file = File.read("./db/source/NYC_Parks.json")
 parks_array = JSON.parse(file)
   parks_array.each do |hash|
-    Parks.new({name: hash["Name"], location: hash["Location"], zipcode: hash["Zip"]}).save
+    Park.new({name: hash["Name"], location: hash["Location"], zipcode: hash["Zip"]}).save
   end
 
 csv = File.read("./db/source/nyc_zipcodes.csv")
 
 CSV.parse(csv, headers: true) do |row|
-  ZipCodes.new({zipcode: row[0], borough: row[1]}).save
+  ZipCode.new({zipcode: row[0], borough: row[1]}).save
 end
 
 
-kesean = Users.create(name: 'Kesean', password: '0609', zipcode: 10022)
-joe = Users.create(name: 'Joe', password: '0000', zipcode: 10024)
+kesean = User.create(name: 'Kesean', password: '0609', zipcode: 10022)
+joe = User.create(name: 'Joe', password: '0000', zipcode: 10024)
 
+HikingTrail.all.each do |trail|
+  x = Park.find_by(name: trail.park_name)
+  if x != nil
+  trail.park = x
+  trail.save
+  end
+end
 
-HikingTrails.all.each do |trail|
+HikingTrail.all.each do |trail|
   if trail.difficulty == "Easy"
     trail.difficulty_level = 2
   elsif trail.difficulty == "Easy/Moderate"
@@ -51,4 +58,4 @@ HikingTrails.all.each do |trail|
   trail.save
 end
 
- Pry.start
+# Pry.start
