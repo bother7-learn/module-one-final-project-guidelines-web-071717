@@ -33,6 +33,14 @@ end
 kesean = User.create(name: 'Kesean', password: '0609', zipcode: 10022)
 joe = User.create(name: 'Joe', password: '0000', zipcode: 10024)
 
+joe.add_review("awesome", HikingTrail.all[2])
+joe.add_review("not good", HikingTrail.all[8])
+joe.add_review("totes amazeballs", HikingTrail.all[27])
+kesean.add_review("10 out of 10", HikingTrail.all[2])
+kesean.add_review("this hike displeases me", HikingTrail.all[19])
+kesean.add_review("the best hike I have ever been on in the history of time", HikingTrail.all[12])
+
+
 HikingTrail.all.each do |trail|
   x = Park.find_by(name: trail.park_name)
   if x != nil
