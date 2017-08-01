@@ -1,5 +1,5 @@
 require 'rest-client'
-
+require 'sanitize'
 module GoogleMaps
 
 GEO_KEY = "AIzaSyARIeC1fdPIK5ON7EjAUQHvMZNmgr46i8k"
@@ -22,8 +22,8 @@ DIRECTIONS_KEY = "AIzaSyBDA-1PhyWdIaRCg0lAghiECA04omO42zE"
     hash[:distance] = array[0]["distance"]["text"]
     hash[:duration] = array[0]["duration"]["text"]
     array[0]["steps"].each do |step|
-      string = step["html_instructions"]
-      hash[:directions] << string.delete("/").gsub(/<b>/, "")
+      step["html_instructions"]
+      hash[:directions] << Sanitize.fragment(step["html_instructions"])
     end
     hash
   end
