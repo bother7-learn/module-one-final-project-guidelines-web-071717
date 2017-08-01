@@ -1,6 +1,6 @@
 require 'pry'
 require_relative 'main_menu_interface.rb'
-
+require 'io/console'
 
 # Main menu of the interface that holds all the functions being executed from run.rb.
 # Asks user to sign into account to link reviews, then filter trails by zip or borough.
@@ -35,7 +35,7 @@ def new_user_creation
   new_username = gets.chomp
   if username_taken?(new_username) == false
     puts "Please enter a password:"
-    usr_password = gets.chomp
+    usr_password = STDIN.noecho(&:gets).chomp
     puts "Please enter your primary zipcode:"
     usr_zipcode = gets.chomp
   end
@@ -72,7 +72,7 @@ def password_verification(found_user)
   puts
   puts "Welcome back #{found_user.name}!"
   puts "Please enter password:"
-  password = gets.chomp
+  password = STDIN.noecho(&:gets).chomp
   while attempt_counter < 4
     if found_user.password == password
       puts
@@ -82,7 +82,7 @@ def password_verification(found_user)
     else
       attempt_counter+=1
       puts "Invalid password. #{5 - attempt_counter} attempt(s) remaining."
-      password = gets.chomp
+      password = STDIN.noecho(&:gets).chomp
     end #If/Else End
   end #While End
   welcome_message
