@@ -24,18 +24,38 @@ def verify_user(user_account_choice)
     user_verification(user_name)
   when 2
     puts "Welcome!"
-    puts "Please enter a username"
-    new_username = gets.chomp
-    username_taken?(new_username)
+    new_user_creation
   else
     puts "Invalid Choice."
     login
   end
 end
+#=====New User Creation====#
+def new_user_creation
+  puts "Please enter a username:"
+  new_username = gets.chomp
+  if username_taken?(new_username) == false
+    puts "Please enter a password:"
+    usr_password = gets.chomp
+    puts "Please enter your primary zipcode:"
+    usr_zipcode = gets.chomp
+  end
+    new_user = Users.create(name: new_username, password: usr_password, zipcode: usr_zipcode)
+    main_menu(new_user)
+end
+
+def username_taken?(new_username)
+  if Users.find_by(name: new_username)
+    puts "Username taken. Please try a different name."
+    new_user_creation
+  else
+    false
+  end
+end
 
 
 
-
+#=====Current User Login=====#
 def user_verification(user_name)
   if Users.find_by(name: user_name)
     # binding.pry
