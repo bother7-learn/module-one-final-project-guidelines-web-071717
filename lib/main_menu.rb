@@ -29,10 +29,11 @@ end
 
 def zipcode_search(user, zip)
   borough = ZipCode.get_borough(zip)
+  nearby_zips = ZipCode.nearby_zipcodes(zip)
+  nearby_parks = Park.all.select { |park| nearby_zips.include?(park.zipcode) }
+  binding.pry
   puts "Greetings from #{borough}!"
   puts "There are currently: Parks!"
-
-  binding.pry
   exit
 end
 

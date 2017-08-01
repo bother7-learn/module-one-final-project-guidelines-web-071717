@@ -7,7 +7,6 @@ class ZipCode < ActiveRecord::Base
 
   def self.nearby_zipcodes(zipcode)
     borough = self.get_borough(zipcode)
-    array = []
     self.where(borough: borough).map do |zip|
       zip.zipcode
     end
