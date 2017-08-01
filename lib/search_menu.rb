@@ -37,7 +37,7 @@ end
 def trail_list(user, zipcode)
   if @nearby_trails.empty?
     puts "Sorry, there are no trails near this zipcode. Please enter a new zipcode"
-    get_search_zipcode
+    get_search_zipcode(user)
   end
 
   puts "Here are the trails most recommended for you:"
