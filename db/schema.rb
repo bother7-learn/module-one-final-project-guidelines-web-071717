@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 8) do
   create_table "reviews", force: :cascade do |t|
     t.string  "desc"
     t.integer "user_id"
-    t.integer "park_id"
+    t.integer "hiking_trail_id"
   end
 
   create_table "users", force: :cascade do |t|

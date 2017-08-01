@@ -3,6 +3,8 @@ require_relative 'googlemaps'
 
 class HikingTrail < ActiveRecord::Base
 belongs_to :park
+has_many :reviews
+has_many :users, through: :reviews
 include GoogleMaps
 
   def self.nearby_trails(zipcodes)
@@ -18,6 +20,8 @@ include GoogleMaps
   def geolocation
     self.coordinates([self.name, self.park_name])
   end
+
+
 
 
 end
