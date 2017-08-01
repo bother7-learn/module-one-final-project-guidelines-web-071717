@@ -74,7 +74,9 @@ def password_verification(found_user)
   password = gets.chomp
   while attempt_counter < 4
     if found_user.password == password
+      puts "Thank you for logging in #{found_user.name}!"
       main_menu(found_user)
+      break
     else
       attempt_counter+=1
       puts "Invalid password. #{5 - attempt_counter} attempt(s) remaining."
