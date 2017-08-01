@@ -1,6 +1,8 @@
+require_relative 'googlemaps'
+
 class Park < ActiveRecord::Base
 has_many :hiking_trails
-
+include GoogleMaps
 
   def self.nearby_parks(zipcodes)
     park_list = []
@@ -12,5 +14,8 @@ has_many :hiking_trails
     park_list
   end
 
+  def geolocation
+    self.coordinates([self.name, self.zipcode])
+  end
 
 end
