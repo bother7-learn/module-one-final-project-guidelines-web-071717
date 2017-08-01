@@ -30,8 +30,8 @@ def park_list(user, zipcode)
   puts "Please pick a park number:"
   park_number = gets.chomp
   chosen_park = @nearby_parks[park_number.to_i - 1]
-  puts "Here are directions to #{chosen_park} from your general location"
-  puts "Directions!"
+  puts "Here are directions to the park from your general location"
+  puts chosen_park.directions(user.geolocation,chosen_park.geolocation)
 end
 
 def trail_list(user, zipcode)
