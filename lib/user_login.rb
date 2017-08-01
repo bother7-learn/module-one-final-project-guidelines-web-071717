@@ -1,6 +1,5 @@
 require 'pry'
-require_relative '../app/models/users.rb'
-require_relative 'main_menu.rb'
+require_relative 'main_menu_interface.rb'
 
 
 # Main menu of the interface that holds all the functions being executed from run.rb.
@@ -70,11 +69,13 @@ end
 
 def password_verification(found_user)
   attempt_counter = 0
+  puts
   puts "Welcome back #{found_user.name}!"
   puts "Please enter password:"
   password = gets.chomp
   while attempt_counter < 4
     if found_user.password == password
+      puts
       puts "Thank you for logging in #{found_user.name}!"
       main_menu(found_user)
       break
