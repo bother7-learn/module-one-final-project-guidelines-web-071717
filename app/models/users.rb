@@ -9,10 +9,10 @@ include GoogleMaps
 
   def add_review(description, hike)
     x = Review.create(:desc => description, :hiking_trail => hike, :user => self)
-    # x.desc = description
-    # x.user = self
-    # x.hiking_trail = hike
-    # x.save
+  end
+
+  def geolocation
+    self.coordinates([self.zipcode])
   end
 
 end
