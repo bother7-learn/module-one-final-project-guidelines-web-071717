@@ -39,7 +39,7 @@ end
 # end
 
 def local_information(zip)
-  borough = ZipCode.get_borough(zip)
+  @borough = ZipCode.get_borough(zip)
   nearby_zips = ZipCode.nearby_zipcodes(zip)
 
   @nearby_parks = Park.nearby_parks(zip.to_s.split) #Integer to Array Magic.
@@ -48,10 +48,10 @@ def local_information(zip)
   @borough_trails = HikingTrail.nearby_trails(nearby_zips)
 
   puts
-  puts "Greetings from #{borough}!"
+  puts "Greetings from #{@borough}!"
   puts "There are currently: #{@nearby_parks.length} Parks in your immediate area."
   puts "There are currently: #{@nearby_trails.length} Trails in your immediate area."
-  puts "There are currently: #{@borough_parks.length} Parks in #{borough}."
-  puts "There are currently: #{@borough_trails.length} Trails in #{borough}."
+  puts "There are currently: #{@borough_parks.length} Parks in #{@borough}."
+  puts "There are currently: #{@borough_trails.length} Trails in #{@borough}."
   puts
 end

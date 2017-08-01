@@ -36,16 +36,33 @@ end
 
 def trail_list(user, zipcode)
   if @nearby_trails.empty?
-    puts "Sorry, there are no trails near this zipcode. Please enter a new zipcode"
-    get_search_zipcode
+    puts "Sorry, there are no trails near this zipcode."
+    puts "Would you like a list of all trails in #{@borough} instead? (Y/N)"
+    answer = gets.chomp
+    if answer == "Y" || answer == "y"
+      borough_toggled_trails
+    else
+      get_search_zipcode(user)
+    end
   end
 
   puts "Here are the trails most recommended for you:"
-  @nearby_trails.each_with_index { |park, index| puts "#{index + 1}. #{park.name}" }
+  @nearby_trails.each_with_index { |trail, index| puts "#{index + 1}. #{trail.name} difficulty: #{trail.difficulty_level}" }
   puts
   puts "Please pick a trail number:"
   trail_number = gets.chomp
   chosen_trail = @nearby_trails[trail_number.to_i - 1]
+  puts "Here are directions to #{chosen_trail} from your general location."
+  puts "Directions!"
+end
+
+def borough_toggled_trails
+  # binding.pry
+  puts "Here are all the trails within #{@borough}:"
+  @borough_trails.each { |trail| puts trail.name}
+  puts "Please pick a trail number:"
+  trail_number = gets.chomp
+  chosen_trail = @borough_trails[trail_number.to_i - 1]
   puts "Here are directions to #{chosen_trail} from your general location."
   puts "Directions!"
 end
