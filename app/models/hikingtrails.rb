@@ -14,8 +14,15 @@ include GoogleMaps
         trails_array << park.hiking_trails
       end
     end
-    trails_array.reject(&:blank?).uniq
-  end
+    trails_array = trails_array.reject(&:blank?).uniq.flatten
+    trails_array.each do |trail|
+      if user != nil && trail != nil
+        trail.distance = trail.geodistance(usergps, {"lat" => trail.lat, "lng" => trail.lng})
+        trail.save
+      end
+    end
+    trails_array.sort_by!(&:distance)
+    end
 
   def geolocation
     self.coordinates(self.name)

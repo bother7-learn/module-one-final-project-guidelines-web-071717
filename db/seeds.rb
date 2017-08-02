@@ -50,6 +50,13 @@ HikingTrail.all.each do |trail|
 end
 
 HikingTrail.all.each do |trail|
+  x = trail.geolocation
+  trail.lat = x["lat"]
+  trail.lng = x["lng"]
+  trail.save
+end
+
+HikingTrail.all.each do |trail|
   if trail.difficulty == "Easy"
     trail.difficulty_level = 2
   elsif trail.difficulty == "Easy/Moderate"

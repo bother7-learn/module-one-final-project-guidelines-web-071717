@@ -42,10 +42,10 @@ def local_information(zip)
   @borough = ZipCode.get_borough(zip)
   nearby_zips = ZipCode.nearby_zipcodes(zip)
 
-  @nearby_parks = Park.nearby_parks(zip.to_s.split).flatten#Integer to Array Magic.
-  @nearby_trails = HikingTrail.nearby_trails(zip.to_s.split).flatten#Integer to Array Magic.
-  @borough_parks = Park.nearby_parks(nearby_zips).flatten
-  @borough_trails = HikingTrail.nearby_trails(nearby_zips).flatten
+  @nearby_parks = Park.nearby_parks([zip])#Integer to Array Magic.
+  @nearby_trails = HikingTrail.nearby_trails([zip], user)#Integer to Array Magic.
+  @borough_parks = Park.nearby_parks(nearby_zips)
+  @borough_trails = HikingTrail.nearby_trails(nearby_zips, user)
 
   puts
   puts "Greetings from #{@borough}!"

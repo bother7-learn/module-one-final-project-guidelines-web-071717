@@ -7,10 +7,15 @@ DISTANCE_KEY = "AIzaSyDjJZ-xa57splIRRFTL8roJFT7T1btHT6M"
 DIRECTIONS_KEY = "AIzaSyBDA-1PhyWdIaRCg0lAghiECA04omO42zE"
   def coordinates(address)
     if address.class == Array
+    address2 = address.last
     address = address.join(",")
     end
     x = RestClient.get "https://maps.googleapis.com/maps/api/geocode/json?address=#{address.to_s},NYC&key=#{GEO_KEY}"
     y = JSON.parse(x)
+    if y["results"] == []
+        x = RestClient.get "https://maps.googleapis.com/maps/api/geocode/json?address=#{address2.to_s}&bounds=40.9175771,-73.70027209999999|40.4773991,-74.25908989999999&key=#{GEO_KEY}"
+        y = JSON.parse(x)
+    end
     y["results"][0]["geometry"]["location"]
   end
 
