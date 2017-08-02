@@ -3,7 +3,7 @@ require_relative 'search_menu.rb'
 
 def main_menu(user)
   puts
-  puts "Welcome to the Search Menu."
+  puts "Welcome to the Main Menu."
   puts "Would you like to use your default zipcode? (Y or N)"
   answer = gets.chomp
   if answer == "Y" || answer == "y"

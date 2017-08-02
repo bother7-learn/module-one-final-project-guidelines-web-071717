@@ -74,14 +74,9 @@ def trail_list(user, zipcode)
   puts "Please pick a trail number:"
   trail_number = gets.chomp
   chosen_trail = @nearby_trails[trail_number.to_i - 1]
-<<<<<<< HEAD
   puts "Here are directions to #{chosen_trail} from your general location:"
   directions =  chosen_trail.directions(user.geolocation,chosen_trail.geolocation)
   puts directions_list(directions)
-=======
-  puts "Here are directions to #{chosen_trail} from your general location."
-  puts chosen_trail.directions(user.geolocation, chosen_trail.geolocation)
->>>>>>> master
 end
 
 def borough_toggled_trails
@@ -95,13 +90,4 @@ def borough_toggled_trails
   binding.pry
   directions = chosen_park.directions(user.geolocation, chosen_trail.geolocation)
   puts directions_list(directions)
-end
-#=======Universal Methods==========#
-def directions_list(directions)
-  puts "Distance: #{directions[:distance]}"
-  puts "Duration: #{directions[:duration]}"
-  directions[:directions].each do |line|
-    sleep(1)
-    puts line
-  end
 end

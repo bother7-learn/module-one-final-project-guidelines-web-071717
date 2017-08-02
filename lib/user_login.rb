@@ -6,7 +6,7 @@ require 'io/console'
 # Asks user to sign into account to link reviews, then filter trails by zip or borough.
 
 def welcome_message
-  puts 'Welcome to the NYC Hiking Trail System!'
+  puts 'Welcome to the NYC Hiking Trail Kiosk!'
 end
 
 def login
@@ -48,7 +48,7 @@ end
 
 
 def username_taken?(new_username)
-  if new_username == "nil"
+  if new_username == "nil" || new_username == ""
     puts "Invalid Username, please enter a valid username"
     new_user_creation
   elsif User.find_by(name: new_username)
