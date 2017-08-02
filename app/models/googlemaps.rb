@@ -9,9 +9,15 @@ DIRECTIONS_KEY = "AIzaSyBDA-1PhyWdIaRCg0lAghiECA04omO42zE"
     if address.class == Array
     address = address.join(",")
     end
-    x = RestClient.get "https://maps.googleapis.com/maps/api/geocode/json?address=#{address.to_s},NYC&key=#{GEO_KEY}"
+    x = RestClient.get "https://maps.googleapis.com/maps/api/geocode/json?address=#{address.to_s}&bounds=40.9175771,-73.70027209999999|40.4773991,-74.25908989999999&key=#{GEO_KEY}"
     y = JSON.parse(x)
     y["results"][0]["geometry"]["location"]
+  end
+
+  def geodistance(origin, destination)
+    x = RestClient.get "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=#{origin["lat"]},#{origin["lng"]}&destinations=#{destination["lat"]},#{destination["lng"]}&key=#{DISTANCE_KEY}"
+    y = JSON.parse(x)
+    y["rows"][0]["elements"][0]["distance"]["text"]
   end
 
   def directions(origin, destination)
