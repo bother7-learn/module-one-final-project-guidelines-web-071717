@@ -62,6 +62,7 @@ HikingTrail.all.each do |trail|
     trail.difficulty_level = 6
   else
     trail.difficulty_level = 1
+    trail.difficulty = 1
   end
   trail.save
 end
