@@ -1,8 +1,8 @@
 module Trails
 
-  def local_information(borough, zip)
+  def local_information(user,borough, zip)
     nearby_zips = ZipCode.nearby_zipcodes(zip)
-    borough_trails = HikingTrail.nearby_trails(nearby_zips).flatten
+    borough_trails = HikingTrail.nearby_trails(user,nearby_zips)
     puts
     puts "Greetings from #{borough}!"
     puts "There are currently: #{borough_trails.length} Trail(s) in #{borough}."
@@ -13,7 +13,7 @@ module Trails
   def trail_list(user, local_trails)
     puts "Here are the trails most recommended for you:"
     local_trails.flatten.each_with_index do |trail, index|
-      puts "#{index + 1}. #{trail.name}, #{trail.park}. Difficulty: #{trail.difficulty}"
+      puts "#{index + 1}. #{trail.name}, #{trail.park.name}. Difficulty: #{trail.difficulty}"
       break if index == 10
     end
     puts "Please pick a trail number:"
