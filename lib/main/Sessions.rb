@@ -2,7 +2,7 @@ require 'pry'
 require 'io/console'
 
 class Session
-  include Login, Trails, Parks, Menu
+  include Login, Trails, Menu
   attr_accessor :current_user, :park_or_trail, :borough
 
   def initialize(current_user = "")
