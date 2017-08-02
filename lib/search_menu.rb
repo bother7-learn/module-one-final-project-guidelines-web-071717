@@ -48,16 +48,11 @@ def trail_list(user, zipcode)
 
   puts "Here are the trails most recommended for you:"
   @nearby_trails.flatten.each_with_index { |trail, index| puts "#{index + 1}. #{trail.name} difficulty: #{trail.difficulty_level}" }
-  puts
   puts "Please pick a trail number:"
   trail_number = gets.chomp
   chosen_trail = @nearby_trails[trail_number.to_i - 1]
   puts "Here are directions to #{chosen_trail} from your general location."
-<<<<<<< HEAD
-  puts chosen_trail.directions(user.geolocation,chosen_trail.geolocation)
-=======
   puts chosen_trail.directions(user.geolocation, chosen_trail.geolocation)
->>>>>>> kesean
 end
 
 def borough_toggled_trails
