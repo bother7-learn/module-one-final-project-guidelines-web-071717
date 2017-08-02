@@ -7,10 +7,7 @@ has_many :reviews
 has_many :users, through: :reviews
 include GoogleMaps
 
-  def self.nearby_trails(zipcodes, user=nil)
-    if user != nil
-      usergps = user.geolocation
-    end
+  def self.nearby_trails(zipcodes)
     trails_array = []
     Park.nearby_parks(zipcodes).each do |park|
       if park.hiking_trails != nil

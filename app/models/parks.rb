@@ -11,7 +11,7 @@ include GoogleMaps
         park_list << park
       end
     end
-    park_list.uniq.sort_by!(&:distance)
+    park_list.uniq
   end
 
   def geolocation
