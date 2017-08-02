@@ -13,7 +13,7 @@ module Trails
   def trail_list(user, local_trails)
     puts "Here are the trails most recommended for you:"
     local_trails.flatten.each_with_index do |trail, index|
-      puts "#{index + 1}. #{trail.name}.  Difficulty: #{trail.difficulty}"
+      puts "#{index + 1}. #{trail.name}, #{trail.park}. Difficulty: #{trail.difficulty}"
       break if index == 10
     end
     puts "Please pick a trail number:"

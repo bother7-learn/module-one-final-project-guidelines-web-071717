@@ -9,6 +9,8 @@ DIRECTIONS_KEY = "AIzaSyBDA-1PhyWdIaRCg0lAghiECA04omO42zE"
     if address.class == Array
     address2 = address.last
     address = address.join(",")
+    address = address.delete("(")
+    address = address.delete(")")
     end
     x = RestClient.get "https://maps.googleapis.com/maps/api/geocode/json?address=#{address.to_s},NYC&key=#{GEO_KEY}"
     y = JSON.parse(x)
