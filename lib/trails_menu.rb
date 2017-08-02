@@ -14,7 +14,7 @@ def trail_list(user, zipcode)
   end
 
   puts "Here are the trails most recommended for you:"
-  @nearby_trails.flatten.each_with_index { |trail, index| puts "#{index + 1}. #{trail.name}.  Difficulty: #{trail.difficulty}" }
+  @nearby_trails.flatten.each_with_index { |trail, index| puts "#{index + 1}. #{trail.name}.   Difficulty: #{trail.difficulty}   Distance from you: #{trail.distance}" }
   puts "Please pick a trail number:"
   trail_number = gets.chomp
   chosen_trail = @nearby_trails[trail_number.to_i - 1]
@@ -30,7 +30,7 @@ end
 
 def borough_toggled_trails(user)
   puts "Here is the trail(s) within #{@borough}:"
-  @borough_trails.flatten.each_with_index { |trail, index| puts "#{index+1}. #{trail.name} Difficulty: #{trail.difficulty}"}
+  @borough_trails.flatten.each_with_index { |trail, index| puts "#{index+1}. #{trail.name}   Difficulty: #{trail.difficulty}    Distance from you: #{trail.distance}"}
   # binding.pry
   puts "Please pick a trail number:"
   trail_number = gets.chomp

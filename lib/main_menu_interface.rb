@@ -42,7 +42,7 @@ def local_information(zip, user)
   @borough = ZipCode.get_borough(zip)
   nearby_zips = ZipCode.nearby_zipcodes(zip)
 
-  @nearby_parks = Park.nearby_parks([zip], user)#Integer to Array Magic.
+  @nearby_parks = Park.nearby_parks([zip])#Integer to Array Magic.
   @nearby_trails = HikingTrail.nearby_trails([zip], user)#Integer to Array Magic.
   @borough_parks = Park.nearby_parks(nearby_zips)
   @borough_trails = HikingTrail.nearby_trails(nearby_zips, user)

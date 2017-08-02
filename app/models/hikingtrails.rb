@@ -20,8 +20,7 @@ include GoogleMaps
     trails_array = trails_array.reject(&:blank?).uniq.flatten
     trails_array.each do |trail|
       if user != nil && trail != nil
-        trailgps = trail.geolocation
-        trail.distance = trail.geodistance(usergps, trailgps)
+        trail.distance = trail.geodistance(usergps, {"lat" => trail.lat, "lng" => trail.lng})
         trail.save
       end
     end
