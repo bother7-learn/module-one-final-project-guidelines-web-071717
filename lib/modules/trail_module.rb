@@ -1,8 +1,8 @@
 module Trails
 
-  def local_information(borough, zip)
+  def local_information(user,borough, zip)
     nearby_zips = ZipCode.nearby_zipcodes(zip)
-    borough_trails = HikingTrail.nearby_trails(nearby_zips).flatten
+    borough_trails = HikingTrail.nearby_trails(user,nearby_zips)
     puts
     puts "Greetings from #{borough}!"
     puts "There are currently: #{borough_trails.length} Trail(s) in #{borough}."

@@ -23,7 +23,7 @@ module Menu
       return search_zipcode
     else
       puts "Invalid search query created..."
-      main_menu(user)
+      get_zip_menu(user)
     end
   end
 

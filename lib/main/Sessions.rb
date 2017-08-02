@@ -20,7 +20,7 @@ class Session
 
   def show_trails(chosen_zip)
     @borough = ZipCode.get_borough(chosen_zip)
-    borough_trails = local_information(@borough, chosen_zip)
+    borough_trails = local_information(@current_user,@borough, chosen_zip)
     trail_list(@current_user, borough_trails)
   end
 
