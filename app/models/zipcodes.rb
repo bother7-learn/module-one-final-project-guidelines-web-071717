@@ -6,6 +6,7 @@ class ZipCode < ActiveRecord::Base
   end
 
   def self.nearby_zipcodes(zipcode)
+    binding.pry
     borough = self.get_borough(zipcode)
     self.where(borough: borough).map do |zip|
       zip.zipcode
