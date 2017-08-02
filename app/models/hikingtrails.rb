@@ -25,7 +25,7 @@ include GoogleMaps
     end
 
   def geolocation
-    self.coordinates(self.name)
+    self.coordinates([self.name, self.park_name])
   end
 
 
