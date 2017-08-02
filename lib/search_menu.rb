@@ -31,12 +31,11 @@ def park_list(user, zipcode)
   end
 
   puts "Here are the parks most recommended for you:"
-  @nearby_parks.flatten.each_with_index { |park, index| puts "#{index + 1}. #{park.name} distance from your location: #{park.distance}" }
+  @nearby_parks.flatten.each_with_index { |park, index| puts "#{index + 1}. #{park.name}" }
   puts
   puts "Please pick a park number:"
   park_number = gets.chomp
   chosen_park = @nearby_parks[park_number.to_i - 1]
-
   puts "Here are directions to the park from your general location"
   directions = chosen_park.directions(user.geolocation, chosen_park.geolocation)
   puts directions_list(directions)
@@ -46,7 +45,7 @@ end
 def borough_toggled_parks
   puts "Here is the park(s) within #{@borough}:"
   @borough_parks.flatten.each_with_index { |park, index| puts "#{index+1}. #{park.name} "}
-  # binding.pry
+  binding.pry
   puts "Please pick a park number:"
   trail_number = gets.chomp
   chosen_park = @borough_parks[trail_number.to_i - 1]
@@ -70,23 +69,25 @@ def trail_list(user, zipcode)
   end
 
   puts "Here are the trails most recommended for you:"
-  @nearby_trails.flatten.each_with_index { |trail, index| puts "#{index + 1}. #{trail.name} difficulty: #{trail.difficulty_level} distance from you: #{trail.distance}" }
+  @nearby_trails.flatten.each_with_index { |trail, index| puts "#{index + 1}. #{trail.name} difficulty: #{trail.difficulty_level}" }
+  puts
   puts "Please pick a trail number:"
   trail_number = gets.chomp
   chosen_trail = @nearby_trails[trail_number.to_i - 1]
-  puts "Here are directions to #{chosen_trail} from your general location."
-  puts chosen_trail.directions(user.geolocation, chosen_trail.geolocation)
+  puts "Here are directions to #{chosen_trail} from your general location:"
+  directions =  chosen_trail.directions(user.geolocation,chosen_trail.geolocation)
+  puts directions_list(directions)
 end
 
 def borough_toggled_trails
   puts "Here is the trail(s) within #{@borough}:"
   @borough_trails.flatten.each_with_index { |trail, index| puts "#{index+1}. #{trail.name} difficulty: #{trail.difficulty}"}
-  # binding.pry
+  binding.pry
   puts "Please pick a trail number:"
   trail_number = gets.chomp
   chosen_trail = @borough_trails[trail_number.to_i - 1]
   puts "Here are directions to #{chosen_trail} from your general location."
-  # binding.pry
+  binding.pry
   directions = chosen_park.directions(user.geolocation, chosen_trail.geolocation)
   puts directions_list(directions)
 end

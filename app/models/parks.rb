@@ -4,22 +4,14 @@ class Park < ActiveRecord::Base
 has_many :hiking_trails
 include GoogleMaps
 
-  def self.nearby_parks(zipcodes, user=nil)
-    if user != nil
-      usergps = user.geolocation
-    end
+  def self.nearby_parks(zipcodes)
     park_list = []
     zipcodes.each do |zip|
       self.where("zipcode like (?)", "%#{zip}%").each do |park|
-        if user != nil
-          parkgps = park.geolocation
-          park.distance = park.geodistance(usergps, parkgps)
-          park.save
-        end
         park_list << park
       end
     end
-    park_list.uniq.sort_by!(&:distance)
+    park_list.uniq
   end
 
   def geolocation
