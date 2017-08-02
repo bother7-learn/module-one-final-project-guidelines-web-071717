@@ -1,9 +1,11 @@
 require_relative '../config/environment'
-require_relative '../lib/Sessions.rb'
+require_relative '../lib/main/Sessions.rb'
 
 
   session = Session.new
   session.current_user = session.attempt_login
-  session.park_or_trail?
-  session.search
-  session.searc_menu
+  loop do
+    chosen_zip = session.search_menu
+    session.show_trails(chosen_zip)
+    session.renew_session
+  end

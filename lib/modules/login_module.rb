@@ -1,6 +1,5 @@
 module Login
 
-
   def attempt_login
     puts 'Press 1 to login to an existing account, or 2 to create a new account:'
     user_account_choice = gets.chomp.to_i
@@ -35,11 +34,12 @@ module Login
 
     new_user = User.create(name: new_username, password: validated_password, zipcode: validated_zipcode)
     puts "Thank you for creating your account! Soon we will also require your SSN in secure plain text."
+    return new_user
   end
 
 
   def username_taken?(new_username)
-    if new_username == "nil"
+    if new_username == "nil" || new_username.length == "".length
       puts "Invalid Username, please enter a valid username"
       new_user_creation
     elsif User.find_by(name: new_username.capitalize)

@@ -1,5 +1,5 @@
 module Menu
-  def main_menu(user)
+  def get_zip_menu(user)
     puts
     puts "Welcome to the Main Menu."
     puts "Would you like to use your default zipcode? (Y or N)"
@@ -20,23 +20,12 @@ module Menu
 
   def validate_search(user, search_zipcode)
     if ZipCode.find_by(zipcode: search_zipcode)
-      local_information(search_zipcode)
-      search_menu(user, search_zipcode)
+      return search_zipcode
     else
       puts "Invalid search query created..."
       main_menu(user)
     end
   end
 
-  def local_information(zip)
-    nearby_zips = ZipCode.nearby_zipcodes(zip)
-    nearby_trails = HikingTrail.nearby_trails([zip])
-    borough_trails = HikingTrail.nearby_trails(nearby_zips).flatten
-
-    puts
-    puts "Greetings from #{@borough}!"
-    puts "There are currently: #{@borough_trails.length} Trail(s) in #{@borough}."
-    puts
-  end
 
 end
