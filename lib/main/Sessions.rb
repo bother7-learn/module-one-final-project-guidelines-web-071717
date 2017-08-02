@@ -50,7 +50,6 @@ class Session
     puts "Thank you for using our system!"
     @current_user = ""
     welcome_message
-    binding.pry
     @current_user = attempt_login
   end
 end
