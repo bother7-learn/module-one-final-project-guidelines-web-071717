@@ -17,6 +17,10 @@ include GoogleMaps
     end
     trails_array = trails_array.reject(&:blank?).uniq.flatten
     trails_array.each do |trail|
+      trail.average_rating = Review.where(hiking_trail_id: trail.id).average(:rating)
+      if trail.average_rating.class == Float
+        trail.average_rating = trail.average_rating.round(2)
+      end
       if user != nil && trail != nil
         trail.distance = trail.geodistance(usergps, {"lat" => trail.lat, "lng" => trail.lng})
         trail.save
