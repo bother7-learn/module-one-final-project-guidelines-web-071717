@@ -85,13 +85,8 @@ HikingTrail.all.each do |trail|
   elsif trail.difficulty == "Difficult"
     trail.difficulty_level = 6
   else
-<<<<<<< HEAD
-    trail.difficulty_level = "Unknown"
-    trail.difficulty = "Undetermined"
-=======
     trail.difficulty_level = 1
     trail.difficulty = "Unknown"
->>>>>>> Joe
   end
   trail.save
 end

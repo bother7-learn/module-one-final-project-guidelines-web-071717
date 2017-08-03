@@ -61,27 +61,47 @@ module Trails
   end
 
   def reviews(user, chosen_trail)
+    puts
+    puts "Reviews for #{chosen_trail.name}:"
+
     if chosen_trail.reviews.empty?
-      new_review(user, chosen_trail)
+      puts "No reviews for #{chosen_trail.name}."
     else
-      puts
-      puts "Reviews for #{chosen_trail.name}:"
       chosen_trail.reviews.each do |review|
-        sleep(0.5)
-        puts "#{User.find(review.user_id).name} - Rating:#{review.rating} - #{review.desc} "
-      end
+          sleep(0.5)
+            puts "#{User.find(review.user_id).name} - Rating:#{review.rating} - #{review.desc} "
+        end
     end
+
+    puts "Would you like to add a review to #{chosen_trail.name}? (Yes/No)"
+    answer = gets.chomp.capitalize
+
+    case answer
+    when "Yes"
+      new_review(user, chosen_trail)
+    when "Y"
+    else
+      #magical break
+    end
+
   end
 
   def new_review(user, chosen_trail)
-    puts "No reviews for #{chosen_trail.name}. Would you like to add one? (Y/N)"
-    choice = gets.chomp
-    if choice == "Y"
-      puts "Please add review description: "
-      trail_description = gets.chomp
-      user.add_review(trail_description, chosen_trail)
-      puts "Review Added."
+    puts "Please add a rating between 1 - 5"
+    rating = gets.chomp
+    loop do
+      if rating.to_i <= 0 || rating.to_i > 5
+        puts "Invalid Rating..."
+        puts "Please add a rating between 1 - 5"
+        rating = gets.chomp
+      else
+        break
+      end
     end
+    puts "Please add review description: "
+    trail_description = gets.chomp
+    user.add_review(trail_description, chosen_trail)
+    puts "Review Added."
   end
 
 end
