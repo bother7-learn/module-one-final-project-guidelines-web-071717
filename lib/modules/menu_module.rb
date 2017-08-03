@@ -5,13 +5,13 @@ module Menu
     puts "Would you like to use your default zipcode? (Y or N)"
     answer = gets.chomp.capitalize
     case answer
-    when "Y"
+    when "Y", "Yes"
       validate_search(user, zipcode)
-    when "N"
+    when "N", "No"
       get_search_zipcode(user)
     else
       puts "Invalid choice."
-      get_zip_menu(user)
+      get_zip_menu(user,zipcode)
     end
   end
 

@@ -16,7 +16,7 @@ module Trails
   end
 
   def trail_list(user, local_trails)
-    binding.pry
+    # binding.pry
     puts "Here are the trails most recommended for you:"
     local_trails.flatten.each_with_index do |trail, index|
       puts "|#{index + 1}. #{trail.name}|   |Avg Rating: #{trail.average_rating}|   |Difficulty: #{trail.difficulty}|   |Distance From You: #{trail.distance}|"
@@ -58,6 +58,7 @@ module Trails
       puts line
       sleep(0.5)
     end
+    return
   end
 
   def reviews(user, chosen_trail)
@@ -77,9 +78,8 @@ module Trails
     answer = gets.chomp.capitalize
 
     case answer
-    when "Yes"
+    when "Yes", "Y"
       new_review(user, chosen_trail)
-    when "Y"
     else
       #magical break
     end
@@ -100,8 +100,9 @@ module Trails
     end
     puts "Please add review description: "
     trail_description = gets.chomp
-    user.add_review(trail_description, chosen_trail)
+    user.add_review(trail_description, chosen_trail, rating)
     puts "Review Added."
+    return
   end
 
 end
