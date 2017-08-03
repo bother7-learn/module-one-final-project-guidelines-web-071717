@@ -13,7 +13,7 @@ module Trails
   def trail_list(user, local_trails)
     puts "Here are the trails most recommended for you:"
     local_trails.flatten.each_with_index do |trail, index|
-      puts "#{index + 1}. #{trail.name}, #{trail.park.name}. Difficulty: #{trail.difficulty}    Distance From You: #{trail.distance}"
+      puts "|#{index + 1}. #{trail.name}|   |Avg Rating: #{trail.average_rating}|   |Difficulty: #{trail.difficulty}|   |Distance From You: #{trail.distance}|"
       break if index == 10
     end
     puts "Please pick a trail number:"
@@ -54,7 +54,7 @@ module Trails
       puts "Reviews for #{chosen_trail.name}:"
       chosen_trail.reviews.each do |review|
         sleep(0.5)
-        puts "#{review.user_id}: #{review.desc} "
+        puts "#{User.find(review.user_id).name} - Rating:#{review.rating} - #{review.desc} "
       end
     end
   end
