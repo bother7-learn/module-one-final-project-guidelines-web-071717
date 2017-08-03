@@ -10,7 +10,7 @@ module Login
     case user_account_choice
     when 1
       puts "Please enter username:"
-      user_name = gets.chomp
+      user_name = gets.chomp.capitalize
       user_verification(user_name)
     when 2
       puts "Welcome!"

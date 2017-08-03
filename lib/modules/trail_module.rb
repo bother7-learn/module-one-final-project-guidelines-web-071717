@@ -1,6 +1,11 @@
 module Trails
 
   def local_information(user,borough, zip)
+    puts "Please wait, system processing"
+    4.times do
+      print "."
+      sleep(1)
+    end
     nearby_zips = ZipCode.nearby_zipcodes(zip)
     borough_trails = HikingTrail.nearby_trails(user,nearby_zips)
     puts
@@ -11,13 +16,19 @@ module Trails
   end
 
   def trail_list(user, local_trails)
+    binding.pry
     puts "Here are the trails most recommended for you:"
     local_trails.flatten.each_with_index do |trail, index|
+      binding.pry
       puts "#{index + 1}. #{trail.name}, #{trail.park.name}. Difficulty: #{trail.difficulty} Distance From You: #{trail.distance}"
-      break if index == 10
     end
     puts "Please pick a trail number:"
     trail_number = gets.chomp
+    if trail_number.to_i > local_trails.length
+      puts "Invalid trail number.."
+      puts
+      trail_list(user, local_trails)
+    end
     chosen_trail = local_trails[trail_number.to_i - 1]
     puts "Would you like to see (1) Directions or (2) Reviews for #{chosen_trail.name}?"
     choice = gets.chomp
@@ -26,6 +37,9 @@ module Trails
       directions_list(user, chosen_trail)
     when "2"
       reviews(user, chosen_trail)
+    else
+      puts "Invalid choice..."
+      trail_list(user, local_trails)
     end
   end
 

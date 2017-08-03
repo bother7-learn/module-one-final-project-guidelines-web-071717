@@ -15,7 +15,7 @@ class Session
   end
 
   def search_menu
-    get_zip_menu(@current_user)
+    get_zip_menu(@current_user, @current_user.zipcode)
   end
 
   def show_trails(chosen_zip)
