@@ -33,13 +33,12 @@ module Login
     end
 
     new_user = User.create(name: new_username, password: validated_password, zipcode: validated_zipcode)
-    puts "Thank you for creating your account! Soon we will also require your SSN in secure plain text."
     return new_user
   end
 
 
   def username_taken?(new_username)
-    if new_username == "nil" || new_username.length == "".length
+    if new_username == "nil" || new_username.split.empty?
       puts "Invalid Username, please enter a valid username"
       new_user_creation
     elsif User.find_by(name: new_username.capitalize)

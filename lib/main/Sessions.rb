@@ -26,8 +26,9 @@ class Session
 
   def renew_session
     puts
-    puts "Would you like to find another trail?:"
-    puts "From here, you may logout by typing 'no' or 'logout' "
+    puts "Would you like to find another trail?"
+    puts "Please type in 'yes' to start a new search"
+    puts "From here, you may logout by typing 'no' or 'logout'"
     session_choice
   end
 

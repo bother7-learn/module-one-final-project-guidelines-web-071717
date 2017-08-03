@@ -33,6 +33,7 @@ end
 kesean = User.create(name: 'Kesean', password: '0609', zipcode: 10022)
 joe = User.create(name: 'Joe', password: '0000', zipcode: 10024)
 
+
 joe.add_review("awesome", HikingTrail.all[2])
 joe.add_review("not good", HikingTrail.all[8])
 joe.add_review("totes amazeballs", HikingTrail.all[27])
@@ -68,8 +69,8 @@ HikingTrail.all.each do |trail|
   elsif trail.difficulty == "Difficult"
     trail.difficulty_level = 6
   else
-    trail.difficulty_level = 1
-    trail.difficulty = 1
+    trail.difficulty_level = "Unknown"
+    trail.difficulty = "Undetermined"
   end
   trail.save
 end
